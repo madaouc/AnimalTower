@@ -13,7 +13,7 @@ public class ZooKeeping : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixUpdate()
+    void Update()
     {
         if(Input.GetButtonDown("Jump"))
         {
