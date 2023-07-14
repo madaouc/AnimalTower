@@ -264,7 +264,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79926591eaffdd1419707cad8066d0e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animals: {fileID: 4950081707070297260, guid: b86a301659dfdf042ba9d40dbf00bbf0, type: 3}
+  animals:
+  - {fileID: 4950081707070297260, guid: b86a301659dfdf042ba9d40dbf00bbf0, type: 3}
+  - {fileID: 1159098495867593783, guid: bb85def2e4b2e9d40bda633c9ce1da42, type: 3}
+  - {fileID: 6128890718251860082, guid: c88e1bf5f185b1d4ea4743d750e9cb3b, type: 3}
 --- !u!4 &1732867670
 Transform:
   m_ObjectHideFlags: 0
@@ -273,7 +276,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732867668}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.17, y: 2.8, z: 0}
+  m_LocalPosition: {x: -0.18000002, y: 6.31, z: 0}
   m_LocalScale: {x: 0.16, y: 0.16, z: 0.16}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -429,11 +432,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159098495867593737, guid: bb85def2e4b2e9d40bda633c9ce1da42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.89
+      value: -0.39
       objectReference: {fileID: 0}
     - target: {fileID: 1159098495867593737, guid: bb85def2e4b2e9d40bda633c9ce1da42, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.84
+      value: -1.89
       objectReference: {fileID: 0}
     - target: {fileID: 1159098495867593737, guid: bb85def2e4b2e9d40bda633c9ce1da42, type: 3}
       propertyPath: m_LocalPosition.z

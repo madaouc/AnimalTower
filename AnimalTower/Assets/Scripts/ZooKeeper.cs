@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ZooKeeper : MonoBehaviour
 {
-    public GameObject animals;
+    public GameObject [] animals;
+
+    GameObject currentAnimal;
     
     // Start is called before the first frame update
     void Start()
@@ -19,7 +21,11 @@ public class ZooKeeper : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            Instantiate(animals);
+          
+            int index = Random.Range(0, 3);
+            
+            currentAnimal = Instantiate(animals[index]);
+            currentAnimal.transform.position = transform.position;
         }
 
 
