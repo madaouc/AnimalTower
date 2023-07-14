@@ -17,11 +17,25 @@ public class ZooKeeper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Update");
+        //Debug.Log("Update");
+
+        Vector3 zooPos = transform.position;
+
+        // x = x + 1
+
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            Debug.Log("A");
+        }
+        else if(Input.GetKeyDown(KeyCode.D))
+        {
+            Debug.Log("D");
+        }
+
+        transform.position = zooPos;
 
         if (Input.GetButtonDown("Jump"))
         {
-          
             int index = Random.Range(0, 3);
             
             currentAnimal = Instantiate(animals[index]);
