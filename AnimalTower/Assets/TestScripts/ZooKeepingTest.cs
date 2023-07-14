@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZooKeeping : MonoBehaviour
+public class ZooKeepingTest : MonoBehaviour
 {
     public GameObject []animals;
     GameObject currentAnimal;
