@@ -14,7 +14,6 @@ public class ZooKeeper : MonoBehaviour
 
     public float gravity = 0.5f;
 
-
     bool haveAnimal = false;
 
     // Start is called before the first frame update
@@ -82,7 +81,7 @@ public class ZooKeeper : MonoBehaviour
         }
 
         float zAngle = (360.0f / turns) * turnCount;
-        Debug.Log("zAngle: " + zAngle);
+        //Debug.Log("zAngle: " + zAngle);
 
         Vector3 animalRot = new Vector3(0.0f, 0.0f, zAngle);
         
