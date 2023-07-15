@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZooKeeper : MonoBehaviour
+public class ZooKeeperTest : MonoBehaviour
 {
     public GameObject [] animals;
     GameObject currentAnimal;
@@ -20,6 +20,8 @@ public class ZooKeeper : MonoBehaviour
     void Start()
     {
         Debug.Log("Start");
+
+ 
     }
 
     // Update is called once per frame
@@ -45,13 +47,14 @@ public class ZooKeeper : MonoBehaviour
 
     //spawn animal
         //if (Input.GetKeyDown(KeyCode.M) && haveAnimal == false) 
-        if (Input.GetKeyDown(KeyCode.M) && !haveAnimal) 
+        if (!haveAnimal) 
         {
             haveAnimal = true;
-
+            
             int index = Random.Range(0, animals.Length);
             currentAnimal = Instantiate(animals[index]);
             currentAnimal.transform.position = transform.position;
+            
             turnCount = 0;
         }
 
@@ -64,6 +67,7 @@ public class ZooKeeper : MonoBehaviour
         }
       
     //animal follow    
+        //if(haveAnimal)
         if(haveAnimal)
         {
             currentAnimal.transform.position = transform.position;

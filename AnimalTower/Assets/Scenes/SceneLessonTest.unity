@@ -314,8 +314,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1732867670}
-  - component: {fileID: 1732867669}
   - component: {fileID: 1732867671}
+  - component: {fileID: 1732867672}
   m_Layer: 0
   m_Name: Zoo
   m_TagString: Untagged
@@ -323,25 +323,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1732867669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1732867668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79926591eaffdd1419707cad8066d0e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animals:
-  - {fileID: 4950081707070297260, guid: b86a301659dfdf042ba9d40dbf00bbf0, type: 3}
-  - {fileID: 1159098495867593783, guid: bb85def2e4b2e9d40bda633c9ce1da42, type: 3}
-  - {fileID: 6128890718251860082, guid: c88e1bf5f185b1d4ea4743d750e9cb3b, type: 3}
-  movement: 0.3
-  turns: 30
-  gravity: 0.5
 --- !u!4 &1732867670
 Transform:
   m_ObjectHideFlags: 0
@@ -350,7 +331,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732867668}
   m_LocalRotation: {x: 0, y: 0, z: -0.42071983, w: 0.9071906}
-  m_LocalPosition: {x: 0.33, y: 2.75, z: 0}
+  m_LocalPosition: {x: 0.81, y: 2.75, z: 0}
   m_LocalScale: {x: 0.16, y: 0.16, z: 0.16}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -409,6 +390,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1732867672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732867668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4e9b641657b9d9439f2703aeb2752a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animals:
+  - {fileID: 6128890718251860082, guid: c88e1bf5f185b1d4ea4743d750e9cb3b, type: 3}
+  - {fileID: 4950081707070297260, guid: b86a301659dfdf042ba9d40dbf00bbf0, type: 3}
+  - {fileID: 1159098495867593783, guid: bb85def2e4b2e9d40bda633c9ce1da42, type: 3}
+  movement: 0.2
+  turns: 8
+  gravity: 0.5
 --- !u!1 &1765000988
 GameObject:
   m_ObjectHideFlags: 0
