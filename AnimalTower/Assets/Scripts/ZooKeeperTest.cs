@@ -57,11 +57,7 @@ public class ZooKeeperTest : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
             move(1);
 
-        // animal follow
-        if (haveAnimal)
-        {
-            currentAnimal.transform.position = transform.position;
-        }
+
 
 
         //animal Rotation
@@ -83,6 +79,11 @@ public class ZooKeeperTest : MonoBehaviour
         Vector3 zooPos = transform.position;
         zooPos.x = zooPos.x + movement * Time.deltaTime * dir;    
         transform.position = zooPos;
+
+        if (haveAnimal)
+        {
+            currentAnimal.transform.position = transform.position;
+        }
     }
 
  
