@@ -25,10 +25,6 @@ public class ZooKeeperTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-        
-
-
         //spawn animal
         //if (Input.GetKeyDown(KeyCode.M) && haveAnimal == false) 
         if (Input.GetKeyDown(KeyCode.M) && !haveAnimal) 
@@ -56,8 +52,6 @@ public class ZooKeeperTest : MonoBehaviour
             move(-1);
         if (Input.GetKey(KeyCode.D))
             move(1);
-
-
 
 
         //animal Rotation
@@ -101,6 +95,16 @@ public class ZooKeeperTest : MonoBehaviour
             currentAnimal.transform.eulerAngles =
                 animalRot;
         }
+    }
+
+    int FuncReturn(float parameter)
+    {
+        if (parameter == 1)
+        {
+            return 1;
+        }
+        else
+            return 0;
     }
 
 }
