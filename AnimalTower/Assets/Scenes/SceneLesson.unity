@@ -314,8 +314,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1732867670}
-  - component: {fileID: 1732867669}
   - component: {fileID: 1732867671}
+  - component: {fileID: 1732867669}
+  - component: {fileID: 1732867672}
   m_Layer: 0
   m_Name: Zoo
   m_TagString: Untagged
@@ -409,6 +410,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1732867672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732867668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a184d19fd1cde54b9a96f49c01ffb11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animals:
+  - {fileID: 1159098495867593783, guid: bb85def2e4b2e9d40bda633c9ce1da42, type: 3}
+  - {fileID: 4950081707070297260, guid: b86a301659dfdf042ba9d40dbf00bbf0, type: 3}
+  - {fileID: 6128890718251860082, guid: c88e1bf5f185b1d4ea4743d750e9cb3b, type: 3}
+  movement: 0.2
+  turns: 8
+  gravity: 0.5
 --- !u!1 &1765000988
 GameObject:
   m_ObjectHideFlags: 0

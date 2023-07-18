@@ -8,7 +8,7 @@ public class ZooKeeper : MonoBehaviour
     GameObject currentAnimal;
 
     [Header("Zoo Movement")]
-    public float movement = 0.2f;
+    public float movement = 0.5f;
     public int turns = 8;
     int turnCount = 0;
 
@@ -26,24 +26,11 @@ public class ZooKeeper : MonoBehaviour
     void Update()
     {
         //Debug.Log("Update");
-    
-    //zoo move
-        Vector3 zooPos = transform.position;
-        // x = x + 1
-        if(Input.GetKey(KeyCode.A))
-        {
-            Debug.Log("A");
-            zooPos.x = zooPos.x - movement * Time.deltaTime;
-        }
-        else if(Input.GetKey(KeyCode.D))
-        {
-            Debug.Log("D");
-            zooPos.x = zooPos.x + movement * Time.deltaTime;
-        }
-        transform.position = zooPos;
 
+        moveLeft();
+        moveRight();
 
-    //spawn animal
+        //spawn animal
         //if (Input.GetKeyDown(KeyCode.M) && haveAnimal == false) 
         if (Input.GetKeyDown(KeyCode.M) && !haveAnimal) 
         {
@@ -93,4 +80,33 @@ public class ZooKeeper : MonoBehaviour
 
 
     }
+
+    void moveLeft()
+    {
+        Vector3 zooPos = transform.position;
+        if (Input.GetKey(KeyCode.A))
+        {
+            Debug.Log("A");
+            zooPos.x = zooPos.x - movement * Time.deltaTime;
+        }
+        transform.position = zooPos;
+    }
+
+    void moveRight()
+    {
+        Vector3 zooPos = transform.position;
+       if (Input.GetKey(KeyCode.D))
+        {
+            Debug.Log("D");
+            zooPos.x = zooPos.x + movement * Time.deltaTime;
+        }
+        transform.position = zooPos;
+    }
+
+
+    void rotate()
+    {
+
+    }
+
 }

@@ -8,7 +8,7 @@ public class ZooKeeperTest : MonoBehaviour
     GameObject currentAnimal;
 
     [Header("Zoo Movement")]
-    public float movement = 0.2f;
+    public float movement = 0.5f;
     public int turns = 8;
     int turnCount = 0;
 
@@ -20,41 +20,24 @@ public class ZooKeeperTest : MonoBehaviour
     void Start()
     {
         Debug.Log("Start");
-
- 
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("Update");
-    
-    //zoo move
-        Vector3 zooPos = transform.position;
-        // x = x + 1
-        if(Input.GetKey(KeyCode.A))
-        {
-            Debug.Log("A");
-            zooPos.x = zooPos.x - movement * Time.deltaTime;
-        }
-        else if(Input.GetKey(KeyCode.D))
-        {
-            Debug.Log("D");
-            zooPos.x = zooPos.x + movement * Time.deltaTime;
-        }
-        transform.position = zooPos;
+       
+        
 
 
-    //spawn animal
+        //spawn animal
         //if (Input.GetKeyDown(KeyCode.M) && haveAnimal == false) 
-        if (!haveAnimal) 
+        if (Input.GetKeyDown(KeyCode.M) && !haveAnimal) 
         {
             haveAnimal = true;
-            
+
             int index = Random.Range(0, animals.Length);
             currentAnimal = Instantiate(animals[index]);
             currentAnimal.transform.position = transform.position;
-            
             turnCount = 0;
         }
 
@@ -65,36 +48,58 @@ public class ZooKeeperTest : MonoBehaviour
                 gravity;
             haveAnimal = false;
         }
-      
-    //animal follow    
-        //if(haveAnimal)
-        if(haveAnimal)
+
+
+
+    //zoo Move
+        if (Input.GetKey(KeyCode.A))
+            move(-1);
+        if (Input.GetKey(KeyCode.D))
+            move(1);
+
+        // animal follow
+        if (haveAnimal)
         {
             currentAnimal.transform.position = transform.position;
         }
 
-    //animal Rotation
-        if(Input.GetKeyDown(KeyCode.E))
+
+        //animal Rotation
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            //turnCount = turnCount + 1;
-            turnCount -= 1;
+            rotate();    
         }
         else if(Input.GetKeyDown(KeyCode.Q))
         {
-            turnCount += 1;
+            rotate(1);
         }
 
+        
+    }
+
+    void move(int dir)
+    {
+        //dir: -1, left; 1, right
+        Vector3 zooPos = transform.position;
+        zooPos.x = zooPos.x + movement * Time.deltaTime * dir;    
+        transform.position = zooPos;
+    }
+
+ 
+    void rotate(int dir = -1)
+    {
+        //dir: -1, clockwise
+        turnCount += dir;
+      
         float zAngle = (360.0f / turns) * turnCount;
         //Debug.Log("zAngle: " + zAngle);
 
         Vector3 animalRot = new Vector3(0.0f, 0.0f, zAngle);
-        
-        if(haveAnimal)
+        if (haveAnimal)
         {
             currentAnimal.transform.eulerAngles =
                 animalRot;
         }
-
-
     }
+
 }
