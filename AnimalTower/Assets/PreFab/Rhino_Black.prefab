@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 1159098495867593736}
   - component: {fileID: 1159098495867593739}
   - component: {fileID: 1159098495867593738}
+  - component: {fileID: 1009683628380659380}
   m_Layer: 0
   m_Name: Rhino_Black
   m_TagString: Animals
@@ -402,3 +403,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1009683628380659380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159098495867593783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c9410454f9ef49f7b087f549e498bde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  landed: 0

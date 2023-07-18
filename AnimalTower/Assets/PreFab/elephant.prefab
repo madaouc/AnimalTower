@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6665395803827106073}
   - component: {fileID: 3080556992733780548}
   - component: {fileID: 3680004734407756044}
+  - component: {fileID: 4045923092690149783}
   m_Layer: 0
   m_Name: elephant
   m_TagString: Animals
@@ -340,3 +341,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4045923092690149783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6128890718251860082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c9410454f9ef49f7b087f549e498bde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  landed: 0
