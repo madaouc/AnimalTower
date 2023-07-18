@@ -6,6 +6,10 @@ public class ZooKeeperTest : MonoBehaviour
 {
     public GameObject [] animals;
     GameObject currentAnimal;
+    
+    public float targetSpawnTime = 1.0f;
+    float timeCounter = 0.0f;
+    bool counterFinish = true;
 
     [Header("Zoo Movement")]
     public float movement = 0.5f;
@@ -16,6 +20,8 @@ public class ZooKeeperTest : MonoBehaviour
 
     bool haveAnimal = false;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,12 +31,20 @@ public class ZooKeeperTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!haveAnimal && !counterFinish)
+        {
+            timeCounter += Time.deltaTime;
+        }
+        if(timeCounter > targetSpawnTime)
+        {
+            timeCounter = 0.0f;
+            counterFinish = true;
+        }
+
         //spawn animal
-        //if (Input.GetKeyDown(KeyCode.M) && haveAnimal == false) 
-        if (Input.GetKeyDown(KeyCode.M) && !haveAnimal) 
+        if (counterFinish  && !haveAnimal) 
         {
             haveAnimal = true;
-
             int index = Random.Range(0, animals.Length);
             currentAnimal = Instantiate(animals[index]);
             currentAnimal.transform.position = transform.position;
@@ -43,6 +57,7 @@ public class ZooKeeperTest : MonoBehaviour
             currentAnimal.GetComponent<Rigidbody2D>().gravityScale =
                 gravity;
             haveAnimal = false;
+            counterFinish = false;
         }
 
 
@@ -57,11 +72,11 @@ public class ZooKeeperTest : MonoBehaviour
         //animal Rotation
         if (Input.GetKeyDown(KeyCode.E))
         {
-            rotate();    
+            rotate();   //clockwise    
         }
         else if(Input.GetKeyDown(KeyCode.Q))
         {
-            rotate(1);
+            rotate(1);  //counter clockwise
         }
 
         
@@ -97,14 +112,5 @@ public class ZooKeeperTest : MonoBehaviour
         }
     }
 
-    int FuncReturn(float parameter)
-    {
-        if (parameter == 1)
-        {
-            return 1;
-        }
-        else
-            return 0;
-    }
 
 }
