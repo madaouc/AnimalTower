@@ -25,23 +25,12 @@ public class ZooKeeper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("Update");
-        Vector3 zooPos = transform.position;
         if (Input.GetKey(KeyCode.A))
-        {
-            Debug.Log("A");
-            zooPos.x = zooPos.x - movement * Time.deltaTime;
-        }
-    
+            moveLeft();
         if (Input.GetKey(KeyCode.D))
-        {
-            Debug.Log("D");
-            zooPos.x = zooPos.x + movement * Time.deltaTime;
-        }
-        transform.position = zooPos;
+            moveRight();
 
         //spawn animal
-        //if (Input.GetKeyDown(KeyCode.M) && haveAnimal == false) 
         if (Input.GetKeyDown(KeyCode.M) && !haveAnimal) 
         {
             haveAnimal = true;
@@ -60,11 +49,7 @@ public class ZooKeeper : MonoBehaviour
             haveAnimal = false;
         }
       
-    //animal follow    
-        if(haveAnimal)
-        {
-            currentAnimal.transform.position = transform.position;
-        }
+    
 
     //animal Rotation
         if(Input.GetKeyDown(KeyCode.E))
@@ -99,12 +84,22 @@ public class ZooKeeper : MonoBehaviour
         Vector3 zooPos = transform.position;
         zooPos.x = zooPos.x - movement;
         transform.position = zooPos;
+        //animal follow    
+        if (haveAnimal)
+        {
+            currentAnimal.transform.position = transform.position;
+        }
     }
     void moveRight()
     {
         Vector3 zooPos = transform.position;
         zooPos.x = zooPos.x + movement;
         transform.position = zooPos;
+        //animal follow    
+        if (haveAnimal)
+        {
+            currentAnimal.transform.position = transform.position;
+        }
     }
 
     
