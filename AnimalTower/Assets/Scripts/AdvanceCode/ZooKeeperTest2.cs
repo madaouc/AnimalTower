@@ -7,7 +7,13 @@ public class ZooKeeperTest2 : MonoBehaviour
     public GameObject [] animals;
     GameObject currentAnimal;
 
-    [Header("Zoo Movement")]
+    public float spawnYOffset = 2.0f;
+    public float zooUpStep = 0.5f;
+    float targetY;  //spawn point move to Y + offset
+    bool meetTargetY = false;
+
+
+    [Header("Animals Movement")]
     public float movement = 0.5f;
     public int turns = 8;
     int turnCount = 0;
@@ -30,53 +36,59 @@ public class ZooKeeperTest2 : MonoBehaviour
     {
         Debug.Log("Start");
         soundFx = GetComponent<AudioSource>();
+        targetY = 0.0f + spawnYOffset;
+        transform.position = new Vector3(0.0f, targetY, 0.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameOverFlag)
-            return;
+
+        if (currentAnimal == null)
+            haveAnimal = false;
 
 
-        //spawn animal
-        if (!haveAnimal)
+        if(!haveAnimal)
         {
-            haveAnimal = true;
-            letGo = false;
-            turnCount = 0;
+            Vector3 zooPos = transform.position;
+            if (transform.position.y < targetY)
+            {
+                //move Upward
+                zooPos.y = Mathf.MoveTowards(zooPos.y, targetY, zooUpStep * Time.deltaTime);
+                //zooPos.x = Mathf.MoveTowards(zooPos.x, 0.0f, zooUpStep * Time.deltaTime);
+                zooPos.x = 0.0f;
+                transform.position = zooPos;
+            }
+            //else if(transform.position.x * transform.position.x > 0.01 )
+            //{
+            //    //move X to center
+            //    zooPos.x = Mathf.MoveTowards(zooPos.x, 0.0f, zooUpStep * Time.deltaTime);
+            //    transform.position = zooPos;
+            //}
+            else
+            {
+                //spawn Animal
+                haveAnimal = true;
+                letGo = false;
+                turnCount = 0;
+                int index = Random.Range(0, animals.Length);    //random animal
+                currentAnimal = Instantiate(animals[index]);
+                currentAnimal.transform.position = transform.position;
 
-            int index = Random.Range(0, animals.Length);
-            currentAnimal = Instantiate(animals[index]);
-            currentAnimal.transform.position = transform.position;
+            }
         }
-    
+
+       
 
         //if (Input.GetKeyDown(KeyCode.Space) && haveAnimal == true)
-        if (Input.GetKeyDown(KeyCode.Space) && haveAnimal)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            currentAnimal.GetComponent<Rigidbody2D>().gravityScale =
-                gravity;
-            letGo = true;
-            soundFx.clip = clipLetGo;
-            soundFx.Play();
+            releaseAnimal();
         }
 
+        // check is animals stable
         if(haveAnimal)
         {
-            if (currentAnimal == null)
-            {
-                Debug.Log("GameOver");
-                gameOverFlag = true;
-                GetComponent<SpriteRenderer>().enabled = false;
-                haveAnimal = false;
-                letGo = false;
-
-                soundFx.clip = clipGameOver;
-                soundFx.Play();
-                return;
-            }
-
             bool landed;
             landed = currentAnimal.GetComponent<AniLanding>().landed;
 
@@ -84,31 +96,28 @@ public class ZooKeeperTest2 : MonoBehaviour
             animalVelocitySqr = currentAnimal.GetComponent<Rigidbody2D>().velocity.sqrMagnitude;
 
             if (landed && animalVelocitySqr < 0.01f)
+            {
                 haveAnimal = false;
+                targetY = findTopY() + spawnYOffset;
+                meetTargetY = false;
+            }
 
         }
        
 
-
-
     //zoo Move
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A))
             move(-1);
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D))
             move(1);
 
 
         //animal Rotation
         if (Input.GetKeyDown(KeyCode.E))
-        {
             rotate();   //clockwise    
-        }
         else if(Input.GetKeyDown(KeyCode.Q))
-        {
             rotate(1);  //counter clockwise
-        }
-
-        
+   
     }
 
     public void move(int dir)
@@ -118,7 +127,7 @@ public class ZooKeeperTest2 : MonoBehaviour
 
         //dir: -1, left; 1, right
         Vector3 zooPos = transform.position;
-        zooPos.x = zooPos.x + movement * Time.deltaTime * dir;    
+        zooPos.x = zooPos.x + movement * dir;    
         transform.position = zooPos;
 
         if (haveAnimal)
@@ -127,7 +136,6 @@ public class ZooKeeperTest2 : MonoBehaviour
         }
     }
 
- 
     public void rotate(int dir = -1)
     {
         if (letGo)
@@ -147,5 +155,33 @@ public class ZooKeeperTest2 : MonoBehaviour
         }
     }
 
+    public void releaseAnimal()
+    {
+        if(haveAnimal)
+        {
+            currentAnimal.GetComponent<Rigidbody2D>().gravityScale =
+                    gravity;
+            letGo = true;
+            soundFx.clip = clipLetGo;
+            soundFx.Play();
+        }
+    }
+
+    float findTopY()
+    {
+        GameObject[] droppedAnimals;
+        droppedAnimals = GameObject.FindGameObjectsWithTag("Animals");
+        float topY = 0.0f;
+        if (droppedAnimals.Length != 0)
+        {
+            foreach(GameObject animal in droppedAnimals)
+            {
+                float animalY = animal.transform.position.y;
+                if (animalY > topY)
+                    topY = animalY;
+            }
+        }
+        return topY;
+    }
 
 }
