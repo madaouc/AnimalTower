@@ -26,9 +26,19 @@ public class ZooKeeper : MonoBehaviour
     void Update()
     {
         //Debug.Log("Update");
-
-        moveLeft();
-        moveRight();
+        Vector3 zooPos = transform.position;
+        if (Input.GetKey(KeyCode.A))
+        {
+            Debug.Log("A");
+            zooPos.x = zooPos.x - movement * Time.deltaTime;
+        }
+    
+        if (Input.GetKey(KeyCode.D))
+        {
+            Debug.Log("D");
+            zooPos.x = zooPos.x + movement * Time.deltaTime;
+        }
+        transform.position = zooPos;
 
         //spawn animal
         //if (Input.GetKeyDown(KeyCode.M) && haveAnimal == false) 
@@ -79,29 +89,25 @@ public class ZooKeeper : MonoBehaviour
         }
 
 
+        
+
     }
+
 
     void moveLeft()
     {
         Vector3 zooPos = transform.position;
-        if (Input.GetKey(KeyCode.A))
-        {
-            Debug.Log("A");
-            zooPos.x = zooPos.x - movement * Time.deltaTime;
-        }
+        zooPos.x = zooPos.x - movement;
         transform.position = zooPos;
     }
-
     void moveRight()
     {
         Vector3 zooPos = transform.position;
-       if (Input.GetKey(KeyCode.D))
-        {
-            Debug.Log("D");
-            zooPos.x = zooPos.x + movement * Time.deltaTime;
-        }
+        zooPos.x = zooPos.x + movement;
         transform.position = zooPos;
     }
+
+    
 
 
     void rotate()
