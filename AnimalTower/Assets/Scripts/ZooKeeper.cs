@@ -13,22 +13,28 @@ public class ZooKeeper : MonoBehaviour
     int turnCount = 0;
 
     public float gravity = 0.5f;
-
     bool haveAnimal = false;
+
+    AudioSource SE;
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("Start");
+        SE = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A))
             moveLeft();
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D))
             moveRight();
+
+        if (Input.GetKeyDown(KeyCode.E))
+            rotate();
+
 
         //spawn animal
         if (Input.GetKeyDown(KeyCode.M) && !haveAnimal) 
@@ -47,35 +53,9 @@ public class ZooKeeper : MonoBehaviour
             currentAnimal.GetComponent<Rigidbody2D>().gravityScale =
                 gravity;
             haveAnimal = false;
+            SE.Play();
         }
       
-    
-
-    //animal Rotation
-        if(Input.GetKeyDown(KeyCode.E))
-        {
-            //turnCount = turnCount + 1;
-            turnCount -= 1;
-        }
-        else if(Input.GetKeyDown(KeyCode.Q))
-        {
-            turnCount += 1;
-        }
-
-        float zAngle = (360.0f / turns) * turnCount;
-        //Debug.Log("zAngle: " + zAngle);
-
-        Vector3 animalRot = new Vector3(0.0f, 0.0f, zAngle);
-        
-        if(haveAnimal)
-        {
-            currentAnimal.transform.eulerAngles =
-                animalRot;
-        }
-
-
-        
-
     }
 
 
@@ -102,12 +82,30 @@ public class ZooKeeper : MonoBehaviour
         }
     }
 
-    
-
-
     void rotate()
-    {
+    {        
+        turnCount -= 1;
+        float zAngle = (360.0f / turns) * turnCount;
+        //Debug.Log("zAngle: " + zAngle);
+        Vector3 animalRot = new Vector3(0.0f, 0.0f, zAngle);
+        if (haveAnimal)
+        {
+            currentAnimal.transform.eulerAngles =
+                animalRot;
+        }
+    }
 
+    void rotateCCW()
+    {
+        turnCount += 1;
+        float zAngle = (360.0f / turns) * turnCount;
+        //Debug.Log("zAngle: " + zAngle);
+        Vector3 animalRot = new Vector3(0.0f, 0.0f, zAngle);
+        if (haveAnimal)
+        {
+            currentAnimal.transform.eulerAngles =
+                animalRot;
+        }
     }
 
 

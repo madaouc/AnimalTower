@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class AnimalCollector : MonoBehaviour
 {
+    AudioSource SE;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        SE = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -25,6 +27,7 @@ public class AnimalCollector : MonoBehaviour
         {
             Debug.Log("GameOver");
             Destroy(collision.gameObject);
+            SE.Play();
         }
     }
 
