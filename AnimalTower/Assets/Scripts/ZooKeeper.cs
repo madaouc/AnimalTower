@@ -17,6 +17,11 @@ public class ZooKeeper : MonoBehaviour
 
     AudioSource SE;
 
+    //timer
+    public float coolDown = 2.0f;
+    float countTime = 0.0f;
+    bool timesUp = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,35 +36,39 @@ public class ZooKeeper : MonoBehaviour
             moveLeft();
         if (Input.GetKeyDown(KeyCode.D))
             moveRight();
-
         if (Input.GetKeyDown(KeyCode.E))
             rotate();
+        if (Input.GetKeyDown(KeyCode.Space))
+            release();
 
 
         //spawn animal
-        if (Input.GetKeyDown(KeyCode.M) && !haveAnimal) 
+        if (!haveAnimal && timesUp) 
         {
             haveAnimal = true;
-
+            timesUp = false;
             int index = Random.Range(0, animals.Length);
             currentAnimal = Instantiate(animals[index]);
             currentAnimal.transform.position = transform.position;
             turnCount = 0;
         }
 
-        //if (Input.GetKeyDown(KeyCode.Space) && haveAnimal == true)
-        if (Input.GetKeyDown(KeyCode.Space) && haveAnimal)
+        if(!haveAnimal)
         {
-            currentAnimal.GetComponent<Rigidbody2D>().gravityScale =
-                gravity;
-            haveAnimal = false;
-            SE.Play();
+            countTime += Time.deltaTime;
+            if(countTime > coolDown)
+            {
+                timesUp = true;
+                countTime = 0.0f;
+            }
         }
+
+       
       
     }
 
 
-    void moveLeft()
+    public void moveLeft()
     {
         Vector3 zooPos = transform.position;
         zooPos.x = zooPos.x - movement;
@@ -70,7 +79,7 @@ public class ZooKeeper : MonoBehaviour
             currentAnimal.transform.position = transform.position;
         }
     }
-    void moveRight()
+    public void moveRight()
     {
         Vector3 zooPos = transform.position;
         zooPos.x = zooPos.x + movement;
@@ -82,7 +91,7 @@ public class ZooKeeper : MonoBehaviour
         }
     }
 
-    void rotate()
+    public void rotate()
     {        
         turnCount -= 1;
         float zAngle = (360.0f / turns) * turnCount;
@@ -95,7 +104,7 @@ public class ZooKeeper : MonoBehaviour
         }
     }
 
-    void rotateCCW()
+    public void rotateCCW()
     {
         turnCount += 1;
         float zAngle = (360.0f / turns) * turnCount;
@@ -107,6 +116,19 @@ public class ZooKeeper : MonoBehaviour
                 animalRot;
         }
     }
+
+    public void release()
+    {
+        if (haveAnimal)
+        {
+            currentAnimal.GetComponent<Rigidbody2D>().gravityScale =
+                gravity;
+            haveAnimal = false;
+            SE.Play();
+            
+        }
+    }
+
 
 
 
