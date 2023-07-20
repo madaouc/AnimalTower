@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/SceneSummerLesson.unity
+    guid: 40b65c6e59e828f4dbe74b3fe6a21296
   m_configObjects: {}

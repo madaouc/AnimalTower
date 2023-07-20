@@ -20,6 +20,7 @@ public class LoadScene : MonoBehaviour
 
     public void load()
     {
-        SceneManager.LoadScene("SceneExp", LoadSceneMode.Single);
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name, LoadSceneMode.Single);
     }
 }
