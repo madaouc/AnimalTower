@@ -60,11 +60,29 @@ public class ZooKeeper : MonoBehaviour
             {
                 timesUp = true;
                 countTime = 0.0f;
+                
+                GameObject[] allAnimals;
+                allAnimals = GameObject.FindGameObjectsWithTag("Animals");
+                float topY = 0.0f;
+                float yOffset = 2.0f;
+                foreach(GameObject animal in allAnimals)
+                {
+                    if (animal.transform.position.y > topY)
+                        topY = animal.transform.position.y;
+                }
+
+                if(transform.position.y < (topY+ yOffset))
+                {
+                    Vector3 newPos = transform.position;
+                    newPos.y = topY + yOffset;
+                    transform.position = newPos;
+                }
+
             }
+
+
         }
 
-       
-      
     }
 
 

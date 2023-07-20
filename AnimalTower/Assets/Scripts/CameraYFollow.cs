@@ -14,6 +14,8 @@ public class CameraYFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Vector3 camPos = transform.position;
+        camPos.y = zoo.transform.position.y;
+        transform.position = camPos;
     }
 }
