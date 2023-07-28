@@ -1968,8 +1968,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1732867670}
   - component: {fileID: 1732867671}
-  - component: {fileID: 1732867669}
-  - component: {fileID: 1732867672}
   - component: {fileID: 1732867673}
   - component: {fileID: 1732867674}
   m_Layer: 0
@@ -1979,26 +1977,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1732867669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1732867668}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79926591eaffdd1419707cad8066d0e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animals:
-  - {fileID: 4950081707070297260, guid: b86a301659dfdf042ba9d40dbf00bbf0, type: 3}
-  - {fileID: 1159098495867593783, guid: bb85def2e4b2e9d40bda633c9ce1da42, type: 3}
-  - {fileID: 6128890718251860082, guid: c88e1bf5f185b1d4ea4743d750e9cb3b, type: 3}
-  movement: 0.3
-  turns: 30
-  gravity: 0.5
-  coolDown: 2
 --- !u!4 &1732867670
 Transform:
   m_ObjectHideFlags: 0
@@ -2066,26 +2044,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1732867672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1732867668}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a184d19fd1cde54b9a96f49c01ffb11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animals:
-  - {fileID: 1159098495867593783, guid: bb85def2e4b2e9d40bda633c9ce1da42, type: 3}
-  - {fileID: 4950081707070297260, guid: b86a301659dfdf042ba9d40dbf00bbf0, type: 3}
-  - {fileID: 6128890718251860082, guid: c88e1bf5f185b1d4ea4743d750e9cb3b, type: 3}
-  targetSpawnTime: 1
-  movement: 0.2
-  turns: 8
-  gravity: 0.5
 --- !u!114 &1732867673
 MonoBehaviour:
   m_ObjectHideFlags: 0
