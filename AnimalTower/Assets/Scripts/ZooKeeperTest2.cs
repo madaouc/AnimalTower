@@ -10,8 +10,8 @@ public class ZooKeeperTest2 : MonoBehaviour
     public float spawnYOffset = 2.0f;
     public float zooUpStep = 0.5f;
     float targetY;  //spawn point move to Y + offset
-    bool meetTargetY = false;
-
+    public float stableWaitTime = 0.5f;
+    float stableCount = 0.0f;
 
     [Header("Animals Movement")]
     public float movement = 0.5f;
@@ -21,9 +21,6 @@ public class ZooKeeperTest2 : MonoBehaviour
 
     bool haveAnimal = false;
     bool letGo = false;
-
-    bool gameOverFlag = false;
-
 
     AudioSource soundFx;
     [Header("SFX")]
@@ -48,7 +45,7 @@ public class ZooKeeperTest2 : MonoBehaviour
             haveAnimal = false;
 
 
-        if(!haveAnimal)
+        if(!haveAnimal )
         {
             Vector3 zooPos = transform.position;
             if (transform.position.y < targetY)
@@ -59,12 +56,6 @@ public class ZooKeeperTest2 : MonoBehaviour
                 zooPos.x = 0.0f;
                 transform.position = zooPos;
             }
-            //else if(transform.position.x * transform.position.x > 0.01 )
-            //{
-            //    //move X to center
-            //    zooPos.x = Mathf.MoveTowards(zooPos.x, 0.0f, zooUpStep * Time.deltaTime);
-            //    transform.position = zooPos;
-            //}
             else
             {
                 //spawn Animal
@@ -92,14 +83,24 @@ public class ZooKeeperTest2 : MonoBehaviour
             bool landed;
             landed = currentAnimal.GetComponent<AniLanding>().landed;
 
-            float animalVelocitySqr;
-            animalVelocitySqr = currentAnimal.GetComponent<Rigidbody2D>().velocity.sqrMagnitude;
-
-            if (landed && animalVelocitySqr < 0.01f)
+            if(landed)
             {
-                haveAnimal = false;
-                targetY = findTopY() + spawnYOffset;
-                meetTargetY = false;
+                float animalVelocitySqr;
+                animalVelocitySqr = currentAnimal.GetComponent<Rigidbody2D>().velocity.sqrMagnitude;
+                if (animalVelocitySqr < 0.01f)
+                {
+                    stableCount += Time.deltaTime;
+                    if (stableCount > stableWaitTime)
+                    {
+                        haveAnimal = false;
+                        targetY = findTopY() + spawnYOffset;
+                        stableCount = 0.0f;
+                    }
+
+                }
+                else
+                    stableCount = 0.0f;
+
             }
 
         }
@@ -162,7 +163,7 @@ public class ZooKeeperTest2 : MonoBehaviour
             currentAnimal.GetComponent<Rigidbody2D>().gravityScale =
                     gravity;
             letGo = true;
-            soundFx.clip = clipLetGo;
+            //soundFx.clip = clipLetGo;
             soundFx.Play();
         }
     }
