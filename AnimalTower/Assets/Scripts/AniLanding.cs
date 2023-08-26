@@ -15,7 +15,7 @@ public class AniLanding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //EditTest
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
