@@ -150,7 +150,7 @@ public class ZooKeeperTest2 : MonoBehaviour
 
         Vector3 animalRot = new Vector3(0.0f, 0.0f, zAngle);
         if (haveAnimal)
-        {
+0        {
             currentAnimal.transform.eulerAngles =
                 animalRot;
         }
